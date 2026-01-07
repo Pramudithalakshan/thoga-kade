@@ -1,4 +1,4 @@
-package edu.icet.ecom.entity;
+package edu.icet.ecom.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
-    private Double phone;
+    private String phone;
     private String address;
     private String city;
     private String registeredDate;
