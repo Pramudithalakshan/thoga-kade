@@ -9,13 +9,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customer {
-    private String id;
-    private String title;
+public class Employee {
+    private Integer id;
     private String name;
+    private Integer nic;
     private String dob;
+    private String position;
+    private Double salary;
+    private String contact;
     private String address;
-    private String city;
-    private String province;
-    private Integer postalCode;
+    private String joinDate;
+    private String status;
 }

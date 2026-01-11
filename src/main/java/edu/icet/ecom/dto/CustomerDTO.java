@@ -9,13 +9,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customer {
+public class CustomerDTO {
     private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
+    private String title;
+    private String name;
+    private String dob;
     private String address;
     private String city;
-    private String registeredDate;
+    private String province;
+    private Integer postalCode;
 }

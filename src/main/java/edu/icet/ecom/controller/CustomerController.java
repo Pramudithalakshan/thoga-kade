@@ -1,7 +1,7 @@
 package edu.icet.ecom.controller;
 
 import edu.icet.ecom.db.Database;
-import edu.icet.ecom.dto.Customer;
+import edu.icet.ecom.dto.CustomerDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,56 +25,55 @@ public class CustomerController implements Initializable {
     private TableColumn<?, ?> colCity;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
-
-    @FXML
-    private TableColumn<?, ?> colFirstName;
+    private TableColumn<?, ?> colDob;
 
     @FXML
     private TableColumn<?, ?> colId;
 
     @FXML
-    private TableColumn<?, ?> colLastName;
+    private TableColumn<?, ?> colName;
 
     @FXML
-    private TableColumn<?, ?> colPhone;
+    private TableColumn<?, ?> colPostalCode;
 
     @FXML
-    private TableColumn<?, ?> colRd;
+    private TableColumn<?, ?> colProvince;
 
     @FXML
-    private TableView<Customer> tblCustomer;
+    private TableColumn<?, ?> colTitle;
+    @FXML
+    private TableView<CustomerDTO> tblCustomer;
 
-    ObservableList<Customer> customers = FXCollections.observableArrayList();
+    ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
     public void reload() {
-        try (PreparedStatement preparedStatement = Database.getInstance().prepareStatement("select * from customers")){
+        String sql = "select customer_id,title,name,dob,address,city,province,postal_code from customers";
+        try (PreparedStatement preparedStatement = Database.getInstance().prepareStatement(sql)){
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                Customer customer = new Customer(
+                CustomerDTO customerDTO = new CustomerDTO(
                         resultSet.getString("customer_id"),
-                        resultSet.getString("first_name"),
-                        resultSet.getString("last_name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("phone"),
+                        resultSet.getString("title"),
+                        resultSet.getString("name"),
+                        resultSet.getString("dob"),
                         resultSet.getString("address"),
                         resultSet.getString("city"),
-                        resultSet.getString("registered_date")
+                        resultSet.getString("province"),
+                        resultSet.getInt("postal_code")
                 );
-                customers.add(customer);
+                customerDTOS.add(customerDTO);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
             colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-            colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+            colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
             colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
             colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
-            colRd.setCellValueFactory(new PropertyValueFactory<>("registeredDate"));
-            tblCustomer.setItems(customers);
-
+            colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
+            colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+            tblCustomer.setItems(customerDTOS);
 
     }
 
