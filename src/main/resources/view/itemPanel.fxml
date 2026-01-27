@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="589.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.ecom.controller.ItemController">
+   <children>
+      <TableView fx:id="tblItem" layoutX="14.0" layoutY="203.0" prefHeight="371.0" prefWidth="818.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="132.79999351501465" text="Id" />
+          <TableColumn fx:id="colDes" prefWidth="237.5999755859375" text="Description" />
+            <TableColumn fx:id="colCategory" prefWidth="179.19998168945312" text="Category" />
+            <TableColumn fx:id="colQty" prefWidth="113.5999755859375" text="Qty" />
+            <TableColumn fx:id="colPrice" prefWidth="156.800048828125" text="Price" />
+        </columns>
+      </TableView>
+      <Label layoutX="338.0" layoutY="37.0" prefHeight="47.0" prefWidth="126.0" text="Item Panel">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
