@@ -46,7 +46,7 @@ public class CustomerController implements Initializable {
 
     ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
     public void reload() {
-        String sql = "select customer_id,title,name,dob,address,city,province,postal_code from customers";
+        String sql = "select customer_id,title,name,dob,address,city,province,postal_code from customer";
         try (PreparedStatement preparedStatement = Database.getInstance().prepareStatement(sql)){
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -59,7 +59,7 @@ public class CustomerController implements Initializable {
                         resultSet.getString("city"),
                         resultSet.getString("province"),
                         resultSet.getInt("postal_code")
-                );
+                )   ;
                 customerDTOS.add(customerDTO);
             }
         }catch (SQLException e){
